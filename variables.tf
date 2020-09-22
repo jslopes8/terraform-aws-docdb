@@ -44,7 +44,7 @@ variable "docdb_parameter_group" {
     default = []
 }
 variable "default_tags" {
-    type = list(map)
+    type = map(string)
     default = {}
 }
 variable "apply_immediately" {
