@@ -32,7 +32,7 @@ resource "aws_docdb_cluster" "main" {
     vpc_security_group_ids  = var.vpc_security_group_ids 
 
     db_subnet_group_name            = aws_docdb_subnet_group.main.0.id
-    db_cluster_parameter_group_name = length(aws_docdb_cluster_parameter_group.main) > 0 ? aws_docdb_cluster_parameter_group.main.0.id : 0
+    db_cluster_parameter_group_name = length(aws_docdb_cluster_parameter_group.main) > 0 ? aws_docdb_cluster_parameter_group.main.0.id : null
 
     final_snapshot_identifier = "${lower(replace(var.docdb_name, " ", "-"))}-${random_id.snapshot_identifier.0.hex}-final-snapshot"
 
