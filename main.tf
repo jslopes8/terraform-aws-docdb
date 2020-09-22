@@ -41,12 +41,12 @@ resource "aws_docdb_cluster" "main" {
 resource "aws_docdb_subnet_group" "main" {
     count = var.create ? length(var.docdb_subnet_group) : 0
 
-    name       = lookup(var.db_subnet_group[count.index], "name", null)
-    subnet_ids = lookup(var.db_subnet_group[count.index], "subnet_ids", null)
+    name       = lookup(var.docdb_subnet_group[count.index], "name", null)
+    subnet_ids = lookup(var.docdb_subnet_group[count.index], "subnet_ids", null)
 
     tags = merge(
         {
-            "Name" = "${format("%s", var.cluster_name)}-Subnet-Group"
+            "Name" = "${format("%s", var.docdb_name)}-Subnet-Group"
         },
         var.default_tags,
     )
@@ -54,11 +54,11 @@ resource "aws_docdb_subnet_group" "main" {
 resource "aws_docdb_cluster_parameter_group" "main" {
     count = var.create ? length(var.docdb_parameter_group) : 0
 
-    name   = lookup(var.parameter_group.value, "name", null)
-    family = lookup(var.parameter_group.value, "family", null)
+    name   = lookup(var.docdb_parameter_group.value, "name", null)
+    family = lookup(var.docdb_parameter_group.value, "family", null)
 
     dynamic "parameter" {
-        for_each = lookup(var.parameter_group.value, "parameter", null)
+        for_each = lookup(var.docdb_parameter_group.value, "parameter", null)
         content {
             apply_method    = lookup(parameter.value, "name", null)
             name            = lookup(parameter.value, "name", null)
