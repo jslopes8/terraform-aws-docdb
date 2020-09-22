@@ -21,7 +21,7 @@ resource "aws_docdb_cluster_instance" "main" {
 resource "aws_docdb_cluster" "main" {
     count = var.create ? 1 : 0
 
-    cluster_identifier      = var.docdb_name
+    cluster_identifier      = lower(replace(var.docdb_name, " ", "-"))
     engine                  = var.engine
     engine_version          = var.engine_version
     master_username         = var.master_username
