@@ -62,3 +62,15 @@ variable "instance_count" {
 variable "instance_class" {
     type = string
 }
+variable "storage_encrypted" {
+    type = bool
+    default = false
+}
+variable "enabled_cloudwatch_logs_exports" {
+    type = any 
+    default = []
+}
+variable "maintenance_window" {
+    type = string
+    default = null
+}

@@ -29,12 +29,17 @@ resource "aws_docdb_cluster" "main" {
     backup_retention_period = var.backup_retention_period
     preferred_backup_window = var.preferred_backup_window
     skip_final_snapshot     = var.skip_final_snapshot
-    vpc_security_group_ids  = var.vpc_security_group_ids 
+    vpc_security_group_ids  = var.vpc_security_group_ids
+    storage_encrypted       = var.storage_encrypted
+
+    enabled_cloudwatch_logs_exports = var.enabled_cloudwatch_logs_exports
 
     db_subnet_group_name            = aws_docdb_subnet_group.main.0.id
     db_cluster_parameter_group_name = length(aws_docdb_cluster_parameter_group.main) > 0 ? aws_docdb_cluster_parameter_group.main.0.id : null
 
     final_snapshot_identifier = "${lower(replace(var.docdb_name, " ", "-"))}-${random_id.snapshot_identifier.0.hex}-final-snapshot"
+
+    preferred_maintenance_window = var.maintenance_window
 
     tags = var.default_tags
 }
