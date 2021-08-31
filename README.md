@@ -61,7 +61,7 @@ module "cluster_docdb" {
 | master_username | Usuario para o DB master user. | `yes` | `string` | ` ` |
 | master_password | Senha para o DB master user. | `yes` | `string` | ` ` |
 | backup_retention_period | Dias para reter o Backup. Default `1`. | `no` | `number` | `7` |
-| preferred_backup_window. Format `07:00-09:00`. | | `no` | `string` | `07:00-09:00` |
+| preferred_backup_window | O intervalo diario durante o qual os backups automatizados são criados se os backups automatizados forem ativados usando o parâmetro BackupRetentionPeriod. Format `07:00-09:00`. | `no` | `string` | `07:00-09:00` |
 | skip_final_snapshot | Determina a criação de um DB Snapshot antes de deletar o Cluster. | `no` | `bool` | `true` |
 | vpc_security_group_ids | Lista de Ids dos Security Group associado ao cluster. | `yes` | `list` | `[ ]` |
 | storage_encrypted | Especifique se o cluster será criptografado. | `no` | `bool` | `false` |
